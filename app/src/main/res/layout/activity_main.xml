@@ -54,9 +54,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
+                android:focusable="false"
+                android:cursorVisible="false"
                 android:ems="10"
                 android:hint="Introduce Fecha"
-                android:inputType="date" />
+                android:inputType="none" />
 
         </LinearLayout>
 
@@ -83,7 +85,7 @@
                 android:layout_weight="2" />
 
             <Switch
-                android:id="@+id/switch2"
+                android:id="@+id/switch_filtro_tipoproducto"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
