@@ -1,6 +1,7 @@
 package com.example.examen1erparcial
 
 import android.R
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.compose.runtime.setValue
 import androidx.activity.ComponentActivity
@@ -20,6 +21,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -42,6 +44,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
@@ -49,6 +52,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.examen1erparcial.ui.theme.Examen1erParcialTheme
+import com.example.examen1erparcial.ui.theme.Purple40
+import com.example.examen1erparcial.ui.theme.Purple80
 
 class MainActivity2 : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,10 +82,10 @@ fun PantallaListaCompra() {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Gestor de Lista de la Compra") },
+                title ={Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) { Text("Gestor de Lista de la Compra") }},
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color.White,
-                    titleContentColor = MaterialTheme.colorScheme.primary
+                    containerColor = MaterialTheme.colorScheme.primary ,
+                    titleContentColor = MaterialTheme.colorScheme.background
                 )
             )
         }
@@ -89,8 +94,8 @@ fun PantallaListaCompra() {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(paddingValues)
-                .padding(8.dp),
+                .padding(paddingValues) //Para que el contenido no quede debajo del TopBar
+                .padding(8.dp), //Se añade otro paddin extra
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
@@ -223,7 +228,7 @@ fun PantallaListaCompra() {
             // BOTÓN AÑADIR
             Spacer(Modifier.height(16.dp))
             Button(onClick = {}, modifier = Modifier.padding(top = 16.dp)) {
-                Text("AÑADIR PRODUCTO")
+                Text( text = "AÑADIR PRODUCTO")
             }
 
             // IMPORTE TOTAL
@@ -295,10 +300,29 @@ fun PantallaListaCompra() {
     }
 }
 
-@Preview(showBackground = true)
+@Preview(name="Mi previsualizacion", showBackground = true)
 @Composable
 fun GreetingPreview() {
     Examen1erParcialTheme {
-       PantallaListaCompra()
+        PantallaListaCompra()
+       // DebugButtonColors()
+    }
+}
+@Composable
+fun DebugButtonColors() {
+    val defaults = ButtonDefaults.buttonColors() // colores por defecto para Button
+    val containerColorState = defaults.containerColor
+    val containerColor = containerColorState
+
+    val primary = MaterialTheme.colorScheme.primary
+    val onPrimary = MaterialTheme.colorScheme.onPrimary
+
+    Column(modifier = Modifier.padding(16.dp)) {
+        Text("MaterialTheme.primary = $primary")
+        Text("Button containerColor (enabled) = $containerColor")
+
+        Button(onClick = {}, modifier = Modifier.padding(top = 8.dp)) {
+            Text("Botón de prueba")
+        }
     }
 }
