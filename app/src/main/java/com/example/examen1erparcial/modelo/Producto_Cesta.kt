@@ -1,4 +1,4 @@
-package com.example.examen1erparcial
+package com.example.examen1erparcial.modelo
 
 data class Producto_Cesta(var nombre:String,
                           var tipo:TipoProducto,

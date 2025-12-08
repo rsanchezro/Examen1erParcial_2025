@@ -4,8 +4,6 @@ import android.app.DatePickerDialog
 import android.icu.util.Calendar
 import android.os.Bundle
 import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.Switch
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
@@ -15,7 +13,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.addTextChangedListener
 import com.example.examen1erparcial.databinding.ActivityMainBinding
-import kotlinx.coroutines.sync.Mutex
+import com.example.examen1erparcial.modelo.Lista_Compra
+import com.example.examen1erparcial.modelo.Producto_Cesta
+import com.example.examen1erparcial.modelo.TipoProducto
 import java.text.SimpleDateFormat
 
 class MainActivity : AppCompatActivity() {
@@ -161,7 +161,11 @@ class MainActivity : AppCompatActivity() {
         mibinding.buttonAAdir.setOnClickListener {
             //Añadir el producto a la lista de la compra_actual
             //Creo un producto
-            var miproducto= Producto_Cesta(mibinding.editTextNombreProducto.text.toString(),mibinding.spinner.selectedItem as TipoProducto,mibinding.editTextImporte.text.toString().toDouble())
+            var miproducto= Producto_Cesta(
+                mibinding.editTextNombreProducto.text.toString(),
+                mibinding.spinner.selectedItem as TipoProducto,
+                mibinding.editTextImporte.text.toString().toDouble()
+            )
             //Añado el producto a la lista
             mi_lista_compra_actual?.let { it.agregar_producto(miproducto)}
             //Vacio los editText
@@ -241,7 +245,7 @@ class MainActivity : AppCompatActivity() {
                 if(mibinding.switchFiltroTipoproducto.isActivated)
                 {//Filtrar los productos
                     lista_productos=mi_lista_compra_actual?.let {
-                        it.filtrar_productos { mibinding.spinner.selectedItem as TipoProducto==it.tipo } as MutableList<Producto_Cesta>?
+                        it.filtrar_productos { mibinding.spinner.selectedItem as TipoProducto ==it.tipo } as MutableList<Producto_Cesta>?
                     }
                 }
                 //Actualizo el importe total de la lista de productos

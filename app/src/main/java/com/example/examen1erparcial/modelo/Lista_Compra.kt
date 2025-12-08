@@ -1,5 +1,6 @@
-package com.example.examen1erparcial
+package com.example.examen1erparcial.modelo
 
+import com.example.examen1erparcial.modelo.Calculable
 import java.util.Date
 
 class Lista_Compra(var fecha: Date): Calculable {
@@ -39,13 +40,13 @@ class Lista_Compra(var fecha: Date): Calculable {
     /** Funcion para filtrar productos con su expresion
      * mas reducida
      */
-    fun filtrar_productosbis(filtro:(p:Producto_Cesta)-> Boolean)= productos_cesta.filter { filtro(it) }
+    fun filtrar_productosbis(filtro:(p: Producto_Cesta)-> Boolean)= productos_cesta.filter { filtro(it) }
 
 
     /** Funcion que sirve para filtrar productos
      *
      */
-    fun filtrar_productos(filtro:(p:Producto_Cesta)-> Boolean):List<Producto_Cesta>
+    fun filtrar_productos(filtro:(p: Producto_Cesta)-> Boolean):List<Producto_Cesta>
     {
         val lista_resultado=mutableListOf<Producto_Cesta>()
 
